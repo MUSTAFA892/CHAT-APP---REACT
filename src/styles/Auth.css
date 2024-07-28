@@ -1,0 +1,74 @@
+.auth {
+    text-align: center;
+}
+
+.auth button {
+    width: 200px;
+    height: 50px;
+    border: none;
+    background-color: #3b5998;
+    color: white;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+/* App.css */
+
+.aurora-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000428; /* Dark blue background to simulate night sky */
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  @keyframes moveAurora {
+    0% { transform: translateX(0) translateY(0); }
+    50% { transform: translateX(10%) translateY(10%); }
+    100% { transform: translateX(0) translateY(0); }
+  }
+  
+  .aurora-layer {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.3), rgba(0, 255, 255, 0));
+    animation: moveAurora 20s linear infinite;
+    opacity: 0.5;
+  }
+  
+  .aurora-layer:nth-child(1) {
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.2), rgba(0, 255, 255, 0));
+    animation-duration: 15s;
+    animation-direction: alternate;
+  }
+  
+  .aurora-layer:nth-child(2) {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 0, 255, 0.2), rgba(255, 0, 255, 0));
+    animation-duration: 20s;
+    animation-direction: alternate-reverse;
+  }
+  
+  .aurora-layer:nth-child(3) {
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.2), rgba(0, 255, 0, 0));
+    animation-duration: 25s;
+    animation-direction: alternate;
+  }
+  
+  .aurora-layer:nth-child(4) {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 0, 0.2), rgba(255, 255, 0, 0));
+    animation-duration: 30s;
+    animation-direction: alternate-reverse;
+  }
+  
+  .aurora-layer:nth-child(5) {
+    background: radial-gradient(circle at 50% 50%, rgba(0, 0, 255, 0.2), rgba(0, 0, 255, 0));
+    animation-duration: 35s;
+    animation-direction: alternate;
+  }
+  

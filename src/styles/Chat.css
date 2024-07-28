@@ -1,0 +1,157 @@
+/* Chat App Container */
+.chat-app {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px; /* Adjusted width */
+  max-height: 80vh; /* Limit height */
+  margin: 0 auto; /* Center horizontally */
+  padding: 20px;
+  background-color: #1e1e1e; /* Dark background for dark mode */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  overflow: hidden; /* Hide overflow to keep rounded corners */
+  position: relative; /* Ensure position for the child elements */
+  color: #fff; /* Default text color */
+}
+
+/* Header */
+.header {
+  margin-bottom: 15px;
+}
+
+.header h1 {
+  font-size: 1.5rem; /* Adjusted font size */
+  color: #fff;
+  text-align: center;
+}
+
+/* Messages Container */
+.messages {
+  flex: 1;
+  overflow-y: auto; /* Scroll if content exceeds height */
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column; /* Arrange messages vertically */
+}
+
+/* Individual Message */
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 60%; /* Reduced width */
+  word-wrap: break-word;
+  color: #fff;
+  position: relative; /* For positioning the typing animation */
+  display: inline-block; /* Fit the content */
+}
+
+.message.user-message {
+  background-color: #007bff; /* Color for user's messages */
+  align-self: flex-end; /* Align user messages to the right */
+  border-radius: 10px 10px 0 10px; /* Rounded corners for user messages */
+}
+
+.message.other-message {
+  background-color: #333; /* Color for others' messages */
+  align-self: flex-start; /* Align other messages to the left */
+  border-radius: 10px 10px 10px 0; /* Rounded corners for other messages */
+}
+
+/* Sender's Name */
+.message .sender {
+  font-size: 0.75rem; /* Very small font size */
+  color: #ccc; /* Light color for the sender's name */
+  margin-bottom: 5px; /* Space between name and message */
+}
+
+/* Typing Animation */
+.typing-indicator {
+  position: absolute;
+  bottom: -25px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.typing-indicator span {
+  background: #333;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin: 0 2px;
+  animation: typing 0.7s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* New Message Form */
+.new-message-form {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.new-message-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #333;
+  color: #fff;
+}
+
+.send-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Blue color for send button */
+  color: #fff;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background-color: #0056b3;
+}
+.chat-app {
+  position: relative; /* Ensure container is positioned correctly */
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5); /* Adjust as needed for a dark theme */
+}
+
+.back-to-room-container {
+  text-align: center; /* Center the button horizontally */
+  margin-top: 20px; /* Space between messages and button */
+}
+
+.back-to-room-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff; /* Adjust color as needed */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-room-button:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}
+
