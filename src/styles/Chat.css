@@ -155,3 +155,47 @@
   background-color: #0056b3; /* Darker shade for hover effect */
 }
 
+.message-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.image-input {
+  margin-left: 10px;
+}
+.emoji-button {
+  /* Ensure no background color is applied here */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.emoji-icon {
+  /* Ensure the image size is appropriate */
+  width: 24px;
+  height: 24px;
+  display: inline-block; /* Ensure proper display */
+}
+
+.emoji-picker-container {
+  position: relative;
+  display: inline-block;
+}
+
+.close-emoji-picker {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-emoji-picker:hover {
+  color: #f00; /* Optional: Change color on hover */
+}
+
+

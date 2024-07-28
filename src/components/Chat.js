@@ -9,11 +9,13 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
+import EmojiPicker from 'emoji-picker-react';
 import "../styles/Chat.css";
 
 export const Chat = ({ room, setIsInChat }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesRef = collection(db, "messages");
   const chatEndRef = useRef(null);
   const [user, setUser] = useState({
@@ -46,7 +48,6 @@ export const Chat = ({ room, setIsInChat }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Check if the new message is empty
     if (newMessage.trim() === "") {
       alert("Please type a message before sending.");
       return;
@@ -62,11 +63,15 @@ export const Chat = ({ room, setIsInChat }) => {
     setNewMessage("");
   };
 
-  // Handle enter key press for message submission
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSubmit(event);
     }
+  };
+
+  const handleEmojiClick = (emojiData) => {
+    setNewMessage(prevMessage => prevMessage + emojiData.emoji);
+    setShowEmojiPicker(false);
   };
 
   return (
@@ -82,7 +87,7 @@ export const Chat = ({ room, setIsInChat }) => {
         </div>
       </div>
       <div className="chat-header" style={styles.chatHeader}>
-        <h1 style={styles.welcomeText}>Room Name: {room}</h1>
+        <h1 style={styles.welcomeText}> </h1>
       </div>
       <div className="messages">
         {messages.map((message) => (
@@ -97,11 +102,34 @@ export const Chat = ({ room, setIsInChat }) => {
         <div ref={chatEndRef} />
       </div>
       <form onSubmit={handleSubmit} className="new-message-form">
+        <button
+          type="button"
+          className="emoji-button"
+          onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+        >
+          <img
+            src="/image/emoji.png"
+            alt="Emoji Picker"
+            style={styles.emojiIcon}
+          />
+        </button>
+        {showEmojiPicker && (
+          <div className="emoji-picker-container">
+            <button
+              type="button"
+              className="close-emoji-picker"
+              onClick={() => setShowEmojiPicker(false)}
+            >
+              &times; {/* Unicode character for '×' */}
+            </button>
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
+          </div>
+        )}
         <input
           type="text"
           value={newMessage}
           onChange={(event) => setNewMessage(event.target.value)}
-          onKeyDown={handleKeyPress} // Add key press handler
+          onKeyDown={handleKeyPress}
           className="new-message-input"
           placeholder="Type your message here..."
         />
@@ -113,6 +141,9 @@ export const Chat = ({ room, setIsInChat }) => {
         <button onClick={() => setIsInChat(false)} className="back-to-room-button">
           Back to Room Input
         </button>
+      <div className="chat-header" style={styles.chatHeader}>
+        <h1 style={styles.welcomeText}>Room Name:{room}</h1>
+      </div>
       </div>
     </div>
   );
@@ -145,14 +176,19 @@ const styles = {
     color: '#aaa',
   },
   chatHeader: {
-    display: 'flex',
+    display: 'center',
     justifyContent: 'flex-end', // Align content to the right
     padding: '10px 0',
-    marginTop: '-1px'
+    marginTop: '20px',
+    fontSize: '20px'
   },
   welcomeText: {
     fontFamily: 'Roboto Mono, monospace', // Apply the funky font here
     fontSize: '35px', // Adjust size as needed
-    color: '#007bff', // Adjust color as needed
+    color: 'white', // Adjust color as needed
   },
+  emojiIcon: {
+    width: '36px', // Adjust size as needed
+    height: '36px',
+  }
 };
